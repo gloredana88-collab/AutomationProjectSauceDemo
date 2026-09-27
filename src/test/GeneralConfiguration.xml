@@ -1,0 +1,9 @@
+<configuration>
+    <DataBaseConfig>
+        <port>3306</port>
+        <dataBase>TextBox_Database</dataBase>
+        <userName>root</userName>
+        <password>Paroladesql1!</password>
+    </DataBaseConfig>
+
+</configuration>

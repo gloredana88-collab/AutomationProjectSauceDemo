@@ -1,0 +1,68 @@
+package Demos.Done;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
+import java.util.List;
+
+public class AddAllProductsToCart {
+
+    @Test
+    public void metodaTestAllMoreProductsToCart () {
+
+        ChromeOptions options = new ChromeOptions();
+
+        options.setExperimentalOption("prefs", java.util.Map.of(
+                "credentials_enable_service", false,
+                "profile.password_manager_enabled", false,
+                "profile.password_manager_leak_detection", false
+        ));
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.get("https://www.saucedemo.com/");
+
+
+        String usernameCredential = ("standard_user");
+        String passwordCredential = ("secret_sauce");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
+        username.click();
+        username.sendKeys(usernameCredential);
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.click();
+        password.sendKeys(passwordCredential);
+
+        WebElement submitButton = driver.findElement(By.id("login-button"));
+        submitButton.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
+
+        List<WebElement> butoaneAddToCart = driver.findElements( By.xpath("//button[contains(@id,'add-to-cart')]"));
+        System.out.println( "Numar produse gasite: " + butoaneAddToCart.size() );
+
+        Assert.assertEquals( butoaneAddToCart.size(), 6, "Numarul produselor gasite nu este 6." );
+        for (WebElement buton : butoaneAddToCart) {
+            buton.click();
+        }
+
+        WebElement cartBadge = wait.until( ExpectedConditions.visibilityOfElementLocated(By.className("shopping_cart_badge")));
+
+        String numarProduseCos = cartBadge.getText();
+
+        System.out.println( "Produse in cos: " + numarProduseCos );
+
+        Assert.assertEquals( numarProduseCos, "6", "Cosul nu contine toate cele 6 produse." );
+
+    }
+}

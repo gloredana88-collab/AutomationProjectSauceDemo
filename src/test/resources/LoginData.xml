@@ -1,0 +1,16 @@
+<dataSets>
+    <dataSet_1>
+        <usernameCredential>standard_user</usernameCredential>
+        <passwordCredential>secret_sauce</passwordCredential>
+    </dataSet_1>
+
+    <dataSet_2>
+        <usernameCredential>standard_user</usernameCredential>
+        <passwordCredential>secret_sauce</passwordCredential>
+    </dataSet_2>
+
+<dataSet_3>
+    <usernameInvalid>invaliduser</usernameInvalid>
+    <passwordInvalid>invalidpassword</passwordInvalid>
+</dataSet_3>
+</dataSets>

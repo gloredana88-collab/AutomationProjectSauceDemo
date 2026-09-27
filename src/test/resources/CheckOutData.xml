@@ -1,0 +1,29 @@
+<dataSets>
+    <dataSet_1>
+        <firstName>Loredana</firstName>
+        <lastName>Popescu</lastName>
+        <zipCode>1234</zipCode>
+    </dataSet_1>
+
+    <dataSet_2>
+        <firstName></firstName>
+        <lastName>Popescu</lastName>
+        <zipCode>1234</zipCode>
+    </dataSet_2>
+
+    <dataSet_3>
+        <firstName>Loredana</firstName>
+        <lastName></lastName>
+        <zipCode>1234</zipCode>
+    </dataSet_3>
+
+    <dataSet_4>
+        <firstName>Loredana</firstName>
+        <lastName>Popescu</lastName>
+        <zipCode></zipCode>
+    </dataSet_4>
+
+
+</dataSets>
+
+
