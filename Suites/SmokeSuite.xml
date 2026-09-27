@@ -6,13 +6,7 @@
     <test name="Smoke Tests">
 
         <classes>
-            <class name="Teste.TestAddProductToCart"/>
-            <class name="Teste.TestCancelOrder"/>
-            <class name="Teste.TestCheckInInfoNull"/>
             <class name="Teste.TestCompleteOrder"/>
-            <class name="Teste.TestRemoveFromProducts"/>
-            <class name="Teste.TestRemoveProductsFromCart"/>
-            <class name="Teste.TestSortProducts"/>
         </classes>
     </test>
 

@@ -21,12 +21,15 @@ public class ChromeServiceBrowser implements IBrowserServices{
 
         options.addArguments("start-maximized");
         options.addArguments("no-sandbox");
-
         options.setExperimentalOption("prefs", java.util.Map.of(
                 "credentials_enable_service", false,
                 "profile.password_manager_enabled", false,
-                "profile.password_manager_leak_detection", false
-        ));
+                "profile.password_manager_leak_detection", false));
+        String ciCd = System.getProperty("ci_cd");
+
+        if(Boolean.parseBoolean(ciCd)) {
+            options.addArguments("--headless");
+        }
 
         return options;
     }

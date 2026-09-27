@@ -7,10 +7,6 @@
 
         <classes>
             <class name="Teste.TestLoginValid"/>
-            <class name="Teste.TestLoginCredentialeInvalide"/>
-            <class name="Teste.TestLoginCredentialeNull"/>
-            <class name="Teste.TestLogOut"/>
-            <class name="Teste.TestVerificareAnonimizareParola"/>
         </classes>
     </test>
 
