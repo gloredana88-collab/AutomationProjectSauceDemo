@@ -6,14 +6,7 @@ import java.util.Map;
 
 public class ProductsObjects {
 
-//    public static final List<String> PRODUCTS = List.of(
-//            "backpack",
-//            "bike-light",
-//            "bolt-t-shirt",
-//            "fleece-jacket",
-//            "onesie",
-//            "test.allthethings()-t-shirt-(red)"
-//    );
+
 
     public static final List<String> PRODUCTS = List.of(
             "backpack",

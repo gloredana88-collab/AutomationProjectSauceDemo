@@ -19,11 +19,11 @@ public class TestBasePage {
     public void initialiseBrowser() {
         ChromeOptions options = new ChromeOptions();
 
-                    options.setExperimentalOption("prefs", java.util.Map.of(
-                    "credentials_enable_service", false,
-                    "profile.password_manager_enabled", false,
-                    "profile.password_manager_leak_detection", false
-                    ));
+//                    options.setExperimentalOption("prefs", java.util.Map.of(
+//                    "credentials_enable_service", false,
+//                    "profile.password_manager_enabled", false,
+//                    "profile.password_manager_leak_detection", false
+//                    ));
 
 //        this.driver = new ChromeDriver(options);
 //        driver.manage().window().maximize();

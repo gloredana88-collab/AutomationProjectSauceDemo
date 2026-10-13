@@ -6,14 +6,17 @@ public class CheckOutObjects {
     private String zipCode;
 
     public String getEnterFirstName() {
+
         return firstName;
     }
 
     public String getEnterLastName() {
+
         return lastName;
     }
 
     public String getEnterZipCode() {
+
         return zipCode;
     }
 }

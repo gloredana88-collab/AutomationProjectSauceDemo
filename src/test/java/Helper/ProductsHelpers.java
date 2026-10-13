@@ -43,21 +43,7 @@ public class ProductsHelpers {
         );
     }
 
-//    public void addProductToCart(String product) {
-//        WebElement addButton = driver.findElement(By.xpath("//button[contains(@id, 'add-to-cart-sauce-labs-" + product + "')]"));
-//        addButton.click();
-//    }
 
-//    public void addProductToCart(String product) {
-//
-//        WebElement addButton = driver.findElement(
-//                By.xpath(
-//                        "//button[contains(@id, 'add-to-cart-sauce-labs-" + product + "')]"
-//                )
-//        );
-//
-//        logInHelpers.clickOnElement(addButton);
-//    }
 
     public void addProductToCart(String product) {
 
@@ -74,45 +60,6 @@ public class ProductsHelpers {
         logInHelpers.clickOnElement(addButton);
     }
 
-//    public void removeRandomProductsFromProductsPage(
-//            List<String> produseAdaugate,
-//            int numberOfProducts
-//    ) {
-//        if (numberOfProducts > produseAdaugate.size()) {
-//            throw new IllegalArgumentException(
-//                    "Nu poti elimina mai multe produse decat au fost adaugate in cos."
-//            );
-//        }
-//
-//        List<String> produseDeEliminat = new ArrayList<>(produseAdaugate);
-//        Collections.shuffle(produseDeEliminat);
-//
-//        List<String> produseEliminate = new ArrayList<>(
-//                produseDeEliminat.subList(0, numberOfProducts)
-//        );
-//
-//        for (String produs : produseEliminate) {
-//
-//            String removeButtonId =
-//                    ProductsObjects.PRODUCT_REMOVE_BUTTON_IDS.get(produs);
-//
-//            if (removeButtonId == null) {
-//                throw new IllegalArgumentException(
-//                        "Nu exista Remove button pentru produsul: " + produs
-//                );
-//            }
-//
-//            WebElement removeButton =
-//                    driver.findElement(By.id(removeButtonId));
-//
-//            logInHelpers.clickOnElement(removeButton);
-//
-//            System.out.println(
-//                    "Produs eliminat din pagina Products: "
-//                            + ProductsObjects.PRODUCT_NAMES.get(produs)
-//            );
-//        }
-//    }
 
     public List<String> removeRandomProductsFromProductsPage(
             List<String> produseAdaugate,

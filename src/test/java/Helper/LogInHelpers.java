@@ -53,13 +53,7 @@ public class LogInHelpers {
         }
     }
 
-//
-//    public void scrollToElement(WebElement element){
-//        waitVisibility(element);
-//        ((JavascriptExecutor) driver).executeScript(
-//                "arguments[0].scrollIntoView({block: 'center'});",
-//                element
-//        );
-//    }
+
+
 
 }

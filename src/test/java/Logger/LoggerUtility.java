@@ -42,35 +42,6 @@ public class LoggerUtility {
         return className + " : " + methodName + " => ";
     }
 
-//    public static void mergeFiles() {
-//        File dir = new File(suiteLogsPath);
-//        String[] fileNames = dir.list();
-//
-//        PrintWriter pw = null;
-//
-//        try {
-//            pw = new PrintWriter(regressionLogsPath + "RegressionLogs.log");
-//            for (String fileName : fileNames) {
-//                File file = new File(dir, fileName);
-//
-//                BufferedReader br = new BufferedReader(new FileReader(file));
-//
-//                pw.println("Content " + fileName);
-//
-//                String line = br.readLine();
-//
-//                while (line != null) {
-//                    pw.println(line);
-//                    line = br.readLine();
-//                }
-//                pw.flush();
-//            }
-//        } catch (IOException message) {
-//            System.out.println(message.getMessage());
-//        }
-//
-//
-//    }
 
     public static void mergeFiles() {
 

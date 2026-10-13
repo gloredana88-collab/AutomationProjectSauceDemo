@@ -2,7 +2,9 @@ package Pages;
 
 import Helper.LogInHelpers;
 import Helper.ProductsHelpers;
+import Logger.LoggerUtility;
 import ObjectData.ProductsObjects;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,9 +51,6 @@ public class ProductsPage {
     @FindBy(id = "dynamic_catalog_sidebar_link")
     WebElement dynamicCatalogLink;
 
-//    @FindBy(id = "product_sort_container")
-//    WebElement sortDropdown;
-
     @FindBy(css = ".product_sort_container")
     WebElement sortDropdown;
 
@@ -71,35 +70,31 @@ public class ProductsPage {
         logoutButton.click();
         System.out.println("S-a selectat logout");
         logInPage.prezentaLogin();
+        LoggerUtility.infoTestCase("Select Logout option.");
+        ChainTestListener.log("Select Logout option.");
     }
 
     public void Products() {
         logInPage.loginaction();
             System.out.println("Navighez pe pagina Products...");
+            LoggerUtility.infoTestCase("Go to product page");
+            ChainTestListener.log("The user is on Product page");
 //        assert productsTitle.isDisplayed();
         Assert.assertTrue(productsTitle.isDisplayed(), "Pagina Products nu este afisata.");
             System.out.println("Pagina Products este afisata cu succes.");
+            LoggerUtility.infoTestCase("Product page is successfully displayed.");
+        ChainTestListener.log("Product page is successfully displayed.");
     }
 
     public void clickCart() {
         logInHelpers.clickOnElement(cartButton);
         System.out.println("S-a selectat optiunea Cart");
+        LoggerUtility.infoTestCase("Select Cart option");
+        ChainTestListener.log("Select Cart option.");
     }
 
     List<String> produseAlese;
 
-
-
-//    public void addRandomProducts(int numberOfProducts) {
-//
-//        produseAlese = productsHelpers.getRandomProducts(ProductsObjects.PRODUCTS, numberOfProducts);
-//        System.out.println("Produse selectate aleator:");
-//        for (String produs : produseAlese) {
-//            System.out.println("- " + ProductsObjects.PRODUCT_NAMES.get(produs));
-//            productsHelpers.addProductToCart(produs);
-//        }
-//        System.out.println("Produsele au fost adaugate in cos.");
-//    }
 
     public List<String> addRandomProducts(int numberOfProducts) {
 
@@ -108,6 +103,9 @@ public class ProductsPage {
         for (String produs : produseAlese) {
             System.out.println("- " + ProductsObjects.PRODUCT_NAMES.get(produs));
             productsHelpers.addProductToCart(produs);
+            LoggerUtility.infoTestCase("Add random product to cart");
+            ChainTestListener.log("Add random product to cart.");
+
         }
         System.out.println("Produsele au fost adaugate in cos.");
         return produseAlese;
@@ -121,6 +119,7 @@ public class ProductsPage {
      List<WebElement> produseDinCos = driver.findElements(By.cssSelector(".cart_item .inventory_item_name"));
             System.out.println("Numar produse asteptate: " + produseAlese.size());
             System.out.println("Numar produse gasite in cos: " + produseDinCos.size());
+
 
       Assert.assertEquals(produseDinCos.size(), produseAlese.size(), "Numarul produselor din cos nu corespunde cu numarul produselor selectate.");
         for (String produs : produseAlese){
@@ -143,28 +142,13 @@ public class ProductsPage {
 
          Assert.assertTrue(produsGasit, "Produsul '" + numeAsteptat + "' NU se afla in cos.");
             System.out.println("Produs verificat cu succes: " + numeAsteptat);
+            LoggerUtility.infoTestCase("Assert products in cart.");
+            ChainTestListener.log("Assert products in cart.");
         }
 
             System.out.println("Verificarea cosului a fost finalizata cu succes.");
     }
 
-//    public void removeRandomProducts(
-//            List<String> produseAdaugate,
-//            int numberOfProducts
-//    ) {
-//
-//        System.out.println(
-//                "Se elimina " + numberOfProducts
-//                        + " produs(e) din pagina Products."
-//        );
-//
-//        productsHelpers.removeRandomProductsFromProductsPage(
-//                produseAdaugate,
-//                numberOfProducts
-//        );
-//
-//        System.out.println("Produsele au fost eliminate.");
-//    }
 
     List<String> produseEliminate;
 
@@ -175,6 +159,8 @@ public class ProductsPage {
 
         for (String produs : produseEliminate) {
             System.out.println("- " + ProductsObjects.PRODUCT_NAMES.get(produs));
+            LoggerUtility.infoTestCase("Remove random product from cart.");
+            ChainTestListener.log("Remove random product from cart.");
         }
     }
 
@@ -190,6 +176,8 @@ public class ProductsPage {
             Assert.assertTrue(addButton.isDisplayed(), "Produsul '" + ProductsObjects.PRODUCT_NAMES.get(produs) + "' nu are butonul Add to cart dupa eliminare.");
 
             System.out.println("Assert trecut: " + ProductsObjects.PRODUCT_NAMES.get(produs) + " are din nou butonul Add to cart.");
+            LoggerUtility.infoTestCase("Assert remove random product from product page.");
+            ChainTestListener.log("Assert remove random product from product page.");
         }
     }
 
@@ -200,6 +188,8 @@ public class ProductsPage {
         // Name (A to Z)
         System.out.println("Se verifica sortarea: Name (A to Z)");
         sort.selectByValue("az");
+        LoggerUtility.infoTestCase("Select A-Z sorting option.");
+        ChainTestListener.log("Select A-Z sorting option.");
 
         List<WebElement> productNames = driver.findElements(By.cssSelector(".inventory_item_name"));
 
@@ -216,11 +206,15 @@ public class ProductsPage {
 
         Assert.assertEquals(actualNames, expectedNames, "Produsele nu sunt sortate corect Name (A to Z).");
         System.out.println("Assert trecut: Name (A to Z).");
+        LoggerUtility.infoTestCase("Assert the A-Z sorting option.");
+        ChainTestListener.log("Assert the A-Z sorting option.");
 
 
         // Name (Z to A)
         System.out.println("Se verifica sortarea: Name (Z to A)");
         sort.selectByValue("za");
+        LoggerUtility.infoTestCase("Select Z-A sorting option.");
+        ChainTestListener.log("Select Z-A sorting option.");
 
         productNames = driver.findElements(By.cssSelector(".inventory_item_name"));
 
@@ -240,12 +234,16 @@ public class ProductsPage {
         Assert.assertEquals(actualNames, expectedNames, "Produsele nu sunt sortate corect Name (Z to A).");
 
         System.out.println("Assert trecut: Name (Z to A).");
+        LoggerUtility.infoTestCase("Assert A-Z sorting option.");
+        ChainTestListener.log("Assert A-Z sorting option.");
 
 
         // Price (low to high)
         System.out.println("Se verifica sortarea: Price (low to high)");
 
         sort.selectByValue("lohi");
+        LoggerUtility.infoTestCase("Select low to high sorting option.");
+        ChainTestListener.log("Select low to high sorting option.");
 
         List<WebElement> productPrices = driver.findElements(By.cssSelector(".inventory_item_price"));
 
@@ -265,12 +263,16 @@ public class ProductsPage {
         Assert.assertEquals(actualPrices, expectedPrices, "Produsele nu sunt sortate corect Price (low to high).");
 
         System.out.println("Assert trecut: Price (low to high).");
+        LoggerUtility.infoTestCase("Assert low to high sorting option.");
+        ChainTestListener.log("Assert low to high sorting option.");
 
 
         // Price (high to low)
         System.out.println("Se verifica sortarea: Price (high to low)");
 
         sort.selectByValue("hilo");
+        LoggerUtility.infoTestCase("Select high to low sorting option.");
+        ChainTestListener.log("Select high to low sorting option.");
 
         productPrices = driver.findElements(By.cssSelector(".inventory_item_price"));
 
@@ -289,36 +291,24 @@ public class ProductsPage {
         Assert.assertEquals(actualPrices, expectedPrices, "Produsele nu sunt sortate corect Price (high to low).");
 
         System.out.println("Assert trecut: Price (high to low).");
+        LoggerUtility.infoTestCase("Assert high to low sorting option.");
+        ChainTestListener.log("Assert high to low sorting option.");
     }
 
-//    public void clickDynamicCatalog() {
-//        System.out.println("Se apasa pe Dynamic Catalog.");
-//
-//        logInHelpers.clickOnElement(dynamicCatalogLink);
-//
-//        System.out.println("S-a accesat Dynamic Catalog.");
-//    }
-//
-//    public void assertDynamicCatalog() {
-//
-//        String currentUrl = driver.getCurrentUrl();
-//
-//        System.out.println("Se verifica pagina Dynamic Catalog.");
-//        System.out.println("URL actual: " + currentUrl);
-//
-//        Assert.assertTrue(currentUrl.contains("inventory.html"), "Nu s-a accesat pagina Dynamic Catalog.");
-//
-//        System.out.println("Assert trecut: Dynamic Catalog a fost accesat.");
-//    }
+
 
     public void openBurgerMenu() {
         System.out.println("Se deschide meniul Burger.");
         logInHelpers.clickOnElement(profileOptionButton);
+        LoggerUtility.infoTestCase("Open side menu.");
+        ChainTestListener.log("Open side menu.");
     }
 
     public void openDynamicCatalog() {
         System.out.println("Se selecteaza Dynamic Catalog.");
         logInHelpers.clickOnElement(dynamicCatalogLink);
+        LoggerUtility.infoTestCase("Select Dynamic catalog.");
+        ChainTestListener.log("Select Dynamic catalog.");
     }
 
     public void assertLazyLoadOption() {
@@ -327,9 +317,15 @@ public class ProductsPage {
         Assert.assertTrue(lazyLoadOption.isDisplayed(), "Optiunea Lazy Load nu este afisata.");
 
         System.out.println("Assert trecut: Lazy Load este afisat.");
+        LoggerUtility.infoTestCase("Assert Lazy load option.");
+        ChainTestListener.log("Assert Lazy load option.");
     }
 
-    public void selectLazyLoad() {System.out.println("Se selecteaza Lazy Load.");logInHelpers.clickOnElement(lazyLoadOption);}
+    public void selectLazyLoad() {System.out.println("Se selecteaza Lazy Load.");
+        logInHelpers.clickOnElement(lazyLoadOption);
+        LoggerUtility.infoTestCase("Select Lazy Load option.");
+        ChainTestListener.log("Select Lazy Load option.");
+    }
 
     public void assertSpinnerOption() {
         System.out.println("Se verifica optiunea Spinner.");
@@ -337,11 +333,15 @@ public class ProductsPage {
         Assert.assertTrue(spinnerOption.isDisplayed(), "Optiunea Spinner nu este afisata.");
 
         System.out.println("Assert trecut: Spinner este afisat.");
+        LoggerUtility.infoTestCase("Assert Spinner Option.");
+        ChainTestListener.log("Assert Spinner Option.");
     }
 
     public void selectSpinner() {
         System.out.println("Se selecteaza Spinner.");
         logInHelpers.clickOnElement(spinnerOption);
+        LoggerUtility.infoTestCase("Select Spinner option.");
+        ChainTestListener.log("Select Spinner option.");
     }
 
     public void assertSliderOption() {
@@ -350,11 +350,15 @@ public class ProductsPage {
         Assert.assertTrue(sliderOption.isDisplayed(), "Optiunea Slider nu este afisata.");
 
         System.out.println("Assert trecut: Slider este afisat.");
+        LoggerUtility.infoTestCase("Assert Slider option.");
+        ChainTestListener.log("Assert Slider option.");
     }
 
     public void selectSlider() {
         System.out.println("Se selecteaza Slider.");
         logInHelpers.clickOnElement(sliderOption);
+        LoggerUtility.infoTestCase("Select Slider option.");
+        ChainTestListener.log("Select Slider option.");
     }
 
 }

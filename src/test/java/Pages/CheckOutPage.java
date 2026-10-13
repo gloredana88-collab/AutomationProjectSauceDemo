@@ -4,6 +4,7 @@ import DataBase.Queries.CheckOutTable;
 import Helper.LogInHelpers;
 import Logger.LoggerUtility;
 import ObjectData.CheckOutObjects;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,12 +16,12 @@ import java.sql.SQLException;
 public class CheckOutPage {
     WebDriver driver;
     LogInHelpers logInHelpers;
-//    CheckOutTable checkOutTable;
+    CheckOutTable checkOutTable;
 
-    public CheckOutPage(WebDriver driver) {
+    public CheckOutPage(WebDriver driver) throws SQLException {
         this.driver = driver;
         this.logInHelpers = new LogInHelpers(driver);
-//        this.checkOutTable = new CheckOutTable();
+        this.checkOutTable = new CheckOutTable();
         PageFactory.initElements(driver, this);
     }
 
@@ -39,9 +40,6 @@ public class CheckOutPage {
     @FindBy(id = "continue")
     WebElement continueButton;
 
-//    @FindBy(className = "error-button")
-//    WebElement eroarelipsaDate;
-
     @FindBy(css = "h3[data-test='error']")
     WebElement checkoutErrorMessage;
 
@@ -53,34 +51,39 @@ public class CheckOutPage {
     }
 
     public void addFirstNameField (String firstName) {
-//        System.out.println("Se introduc datele in rubrica First Name");
+        System.out.println("Se introduc datele in rubrica First Name");
         logInHelpers.sendText(firstNameField, firstName);
-        LoggerUtility.infoTestCase("Se introduc datele in rubrica First Name");
+        LoggerUtility.infoTestCase("Insert data in First Name field.");
+        ChainTestListener.log("Insert data in First Name field.");
     }
 
     public void addLastNameField (String lastName) {
-//        System.out.println("Se introduc datele in rubrica Last Name");
+        System.out.println("Se introduc datele in rubrica Last Name");
         logInHelpers.sendText(lastNameField, lastName);
-        LoggerUtility.infoTestCase("Se introduc datele in rubrica Last Name");
+        LoggerUtility.infoTestCase("Insert data in Last Name field.");
+        ChainTestListener.log("Insert data in Last Name field.");
     }
 
     public void addZipCode (String zipCode) {
-//        System.out.println("Se introduc datele in rubrica ZipCode");
+        System.out.println("Se introduc datele in rubrica ZipCode");
         logInHelpers.sendText(postalCodeField, zipCode);
-        LoggerUtility.infoTestCase("Se introduc datele in rubrica ZipCode");
+        LoggerUtility.infoTestCase("Insert data in ZipCode field.");
+        ChainTestListener.log("Insert data in ZipCode field.");
     }
 
 
     public void continueCheckout() {
         logInHelpers.clickOnElement(continueButton);
-//        System.out.println("S-a selectat optiunea Continue");
-        LoggerUtility.infoTestCase("S-a selectat optiunea Continue");
+        System.out.println("S-a selectat optiunea Continue");
+        LoggerUtility.infoTestCase("Select Continue option.");
+        ChainTestListener.log("Select Continue Option.");
     }
 
     public void cancelCheckout() {
         logInHelpers.clickOnElement(cancelButton);
         System.out.println("S-a selectat optiunea Cancel");
-        LoggerUtility.infoTestCase("S-a selectat optiunea Cancel");
+        LoggerUtility.infoTestCase("Select Cancel option.");
+        ChainTestListener.log("Select Cancel Option.");
 
     }
 
@@ -97,37 +100,9 @@ public class CheckOutPage {
         );
 
         System.out.println("Assert trecut: suntem in Your Cart.");
+        LoggerUtility.infoTestCase("Assert cancel Checkout.");
+        ChainTestListener.log("Assert cancel Checkout.");
     }
-
-//    public void assertDateInvalideCheckout() {
-//        String confirmOrder =  eroarelipsaDate.getText();
-//        System.out.println("MESAJ ACTUAL: [" + confirmOrder + "]");
-//        assert confirmOrder.contains("Error:");
-//    }
-//public void assertDateInvalideCheckout(CheckOutObjects data) {
-//
-//    if (data.getEnterFirstName() == null || data.getEnterFirstName().isEmpty()) {
-//
-//        Assert.assertEquals(
-//                checkoutErrorMessage.getText(),
-//                "Error: First Name is required"
-//        );
-//
-//    } else if (data.getEnterFirstName() == null || data.getEnterLastName().isEmpty()) {
-//
-//        Assert.assertEquals(
-//                checkoutErrorMessage.getText(),
-//                "Error: Last Name is required"
-//        );
-//
-//    } else if (data.getEnterZipCode() == null || data.getEnterZipCode().isEmpty()) {
-//
-//        Assert.assertEquals(
-//                checkoutErrorMessage.getText(),
-//                "Error: Postal Code is required"
-//        );
-//    }
-//}
 
     public void assertDateInvalideCheckout(CheckOutObjects data) {
 
@@ -163,18 +138,12 @@ public class CheckOutPage {
             );
 
             System.out.println("Assert pentru Postal Code a trecut.");
+            LoggerUtility.infoTestCase("Assert Invalid Data CheckOut");
         }
     }
 
 
-//    public void dateinserate(){
-//        WebElement rowAdded = rezultatInsert;
-//        String rowaddedText = rowAdded.getText();
-//        System.out.println(rowaddedText);
-//
-//    }
-//
-//    public void addEntryInTable(CheckOutObjects data) throws SQLException {
-//        checkOutTable.insertTableRow(data);
-//    }
+    public void addEntryInTable(CheckOutObjects data) throws SQLException {
+        checkOutTable.insertTableRow(data);
+    }
 }

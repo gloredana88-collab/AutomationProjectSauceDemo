@@ -2,7 +2,9 @@ package Pages;
 
 import Helper.LogInHelpers;
 import Helper.ProductsHelpers;
+import Logger.LoggerUtility;
 import ObjectData.ProductsObjects;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,11 +30,6 @@ public class YourCartPage {
         PageFactory.initElements(driver, this);
     }
 
-//    @FindBy(className = "cart_list")
-//    WebElement inventory;
-//
-//    @FindBy(css = ".inventory_item_name")
-//    WebElement inventoryName;
 
     @FindBy(id = "checkout")
         WebElement checkout;
@@ -40,42 +37,6 @@ public class YourCartPage {
     @FindBy(id = "continue-shopping")
         WebElement continueShopping;
 
-//    public void removeRandomProducts(List<String> produseAdaugate, int numberOfProducts){
-//
-//        if (numberOfProducts > produseAdaugate.size()) {
-//            throw new IllegalArgumentException(
-//                    "Nu poti elimina mai multe produse decat au fost adaugate in cos."
-//            );
-//        }
-//
-//        List<String> produseDeEliminat =
-//                new ArrayList<>(produseAdaugate);
-//
-//        Collections.shuffle(produseDeEliminat);
-//
-//        produseDeEliminat = new ArrayList<>(
-//                produseDeEliminat.subList(0, numberOfProducts)
-//        );
-//
-//        System.out.println("Produse alese pentru eliminare:");
-//
-//        for (String produs : produseDeEliminat) {
-//
-//            String removeButtonId =
-//                    ProductsObjects.PRODUCT_REMOVE_BUTTON_IDS.get(produs);
-//
-//            WebElement removeButton = driver.findElement(
-//                    By.id(removeButtonId)
-//            );
-//
-//            logInHelpers.clickOnElement(removeButton);
-//
-//            System.out.println(
-//                    "Produs eliminat: "
-//                            + ProductsObjects.PRODUCT_NAMES.get(produs)
-//            );
-//        }
-//    }
 
     List<String> produseEliminate;
 
@@ -97,6 +58,8 @@ public class YourCartPage {
             logInHelpers.clickOnElement(removeButton);
 
             System.out.println("Produs eliminat: " + ProductsObjects.PRODUCT_NAMES.get(produs));
+            LoggerUtility.infoTestCase("Remove random products.");
+            ChainTestListener.log("Remove random products.");
         }
     }
 
@@ -115,6 +78,8 @@ public class YourCartPage {
             Assert.assertFalse(produsGasit, "Produsul '" + numeProdusEliminat + "' a fost eliminat, dar inca se afla in cos.");
 
             System.out.println("Verificare remove OK: " + numeProdusEliminat + " nu mai exista in cos.");
+            LoggerUtility.infoTestCase("Assert remove product from cart.");
+            ChainTestListener.log("Assert remove product from cart.");
         }
     }
 
@@ -126,16 +91,22 @@ public class YourCartPage {
         Assert.assertEquals(produseDinCos.size(), expectedNumberOfProducts, "Numarul produselor ramase in cos nu este corect.");
 
         System.out.println("Numarul produselor ramase in cos este corect: " + produseDinCos.size());
+        LoggerUtility.infoTestCase("Assert number of products after remove.");
+        ChainTestListener.log("Assert number of products after remove.");
     }
 
     public void selectCheckOut() {
         checkout.click();
         System.out.println("S-a selectat optiunea checkOut");
+        LoggerUtility.infoTestCase("Select Checkout option.");
+        ChainTestListener.log("Select Checkout option.");
     }
 
     public void selectContinueShopping() {
         continueShopping.click();
         System.out.println("S-a selectat optiunea continueShopping");
+        LoggerUtility.infoTestCase("Select Continue Shopping.");
+        ChainTestListener.log("Select Continue Shopping.");
     }
 
     public void assertContinueShopping() {
@@ -148,6 +119,8 @@ public class YourCartPage {
         Assert.assertTrue(currentUrl.contains("inventory.html"), "Nu s-a revenit pe pagina Products dupa Continue Shopping.");
 
         System.out.println("Assert trecut: suntem pe pagina Products.");
+        LoggerUtility.infoTestCase("Assert Continue Shopping.");
+        ChainTestListener.log("Assert Continue Shopping.");
     }
 }
 

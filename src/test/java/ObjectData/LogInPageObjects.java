@@ -7,18 +7,22 @@ public class LogInPageObjects   {
     private String passwordInvalid;
 
     public String getUsernameCredential() {
+
         return usernameCredential;
     }
 
     public String getPasswordCredential() {
+
         return passwordCredential;
     }
 
     public String getUsernameInvalid() {
+
         return usernameInvalid;
     }
 
     public String getPasswordInvalid() {
+
         return passwordInvalid;
     }
 }
